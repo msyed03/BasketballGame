@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
             manager.registerListener(listener, sensor, SensorManager.SENSOR_DELAY_GAME);
         }
     }
+
+    @Override
     protected void onStop(){
         super.onStop();
         manager.unregisterListener(listener);

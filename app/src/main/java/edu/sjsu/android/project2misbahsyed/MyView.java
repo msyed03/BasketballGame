@@ -10,20 +10,19 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 public class MyView extends View {
-    private final int BALL_SIZE = 500;
+    private final int BALL_SIZE = 200;
     private Bitmap field, ball;
     private float originX, originY, horizontalBound, verticalBound;
     private Particle particle;
     private MyListener listener;
     private Paint paint;
-    // Declare a constant for your name at the top of the class
     private final String NAME = "Misbah Syed";
 
     public MyView(Context context){
         super(context);
         listener = new MyListener(context);
         particle = new Particle();
-        // initialize others Feb 25
+        // initialize Feb 25
         field = BitmapFactory.decodeResource(getResources(), R.drawable.field);  // Load your image
         ball = BitmapFactory.decodeResource(getResources(), R.drawable.ball);    // Load the ball image
         ball = Bitmap.createScaledBitmap(ball, BALL_SIZE, BALL_SIZE,false);
@@ -46,20 +45,21 @@ public class MyView extends View {
         verticalBound = (h - BALL_SIZE) / 2f;
     }
 
+    @Override
     public void onDraw(@NonNull Canvas canvas){
         super.onDraw(canvas);
         canvas.drawBitmap(field, 0, 0, null);
-
         canvas.drawBitmap(ball, originX - BALL_SIZE / 2f + particle.mPosX, originY - BALL_SIZE / 2f - particle.mPosY, null);
+
         particle.updatePosition(listener.getX(), listener.getY(), listener.getTimestamp());
         particle.resolveCollisionWithBounds(horizontalBound, verticalBound);
 
         // Draw your name on the screen
-        paint.setTextSize(100); // Adjust size
+        paint.setTextSize(80); // Adjust size
         paint.setColor(0xFFFF0000); // Red color
         float textWidth = paint.measureText(NAME);
-        //canvas.drawText(NAME, originX - textWidth / 2, originY + verticalBound - 100, paint);
-        canvas.drawText(NAME, originX - textWidth / 2, 150, paint);
+        //can use originY + verticalBound - 100
+        canvas.drawText(NAME, originX - textWidth / 2, 380, paint);
 
         invalidate();
 

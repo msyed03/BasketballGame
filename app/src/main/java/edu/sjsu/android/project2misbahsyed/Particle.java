@@ -1,8 +1,7 @@
-// TODO: change the package name accordingly
 package edu.sjsu.android.project2misbahsyed;
 
 public class Particle {
-    private static final float COR = 1.0f;  //0.7f;
+    private static final float COR = 0.7f;
     private float mVelX;
     private float mVelY;
 

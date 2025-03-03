@@ -43,6 +43,7 @@ public class MyListener implements SensorEventListener{
         }
     }
 
+    @Override
     public void onAccuracyChanged(Sensor sensor, int i){
 
     }
